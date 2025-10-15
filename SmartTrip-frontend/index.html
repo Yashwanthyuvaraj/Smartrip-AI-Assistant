@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartTrip - Your Ultimate Travel Companion in India</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/logo.png">
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-route"></i>
+            <h1>SmartTrip</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#cities">Cities</a></li>
+                <li><a href="#attractions">Attractions</a></li>
+                <li><a href="#map">Map</a></li>
+                <li class="profile-container">
+                    <!-- This will be dynamically updated based on login state -->
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Discover India with SmartTrip</h2>
+                <p>Your intelligent travel companion for exploring India's rich culture and heritage</p>
+                <div class="hero-buttons">
+                    <button class="btn primary" id="login-btn">Login</button>
+                    <button class="btn secondary" id="signup-btn">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose SmartTrip?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Smart Navigation</h3>
+                    <p>Real-time traffic updates and optimal route planning to get you there faster</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Local Insights</h3>
+                    <p>Cultural tips, language guides, and local etiquette to enhance your experience</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Safety First</h3>
+                    <p>Safety tips, emergency contacts, and secure travel recommendations</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <h3>Weather Updates</h3>
+                    <p>Real-time weather conditions and forecasts for all Indian cities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- City Search Section -->
+    <section id="cities" class="section">
+        <div class="container">
+            <h2 class="section-title">Explore Indian Cities</h2>
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="city-search" placeholder="Search for cities in India...">
+                    <button class="btn primary"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="search-filters">
+                    <select id="region-filter">
+                        <option value="">All Regions</option>
+                        <option value="north">North India</option>
+                        <option value="south">South India</option>
+                        <option value="east">East India</option>
+                        <option value="west">West India</option>
+                        <option value="central">Central India</option>
+                        <option value="northeast">Northeast India</option>
+                    </select>
+                    <select id="category-filter">
+                        <option value="">All Categories</option>
+                        <option value="heritage">Heritage Sites</option>
+                        <option value="nature">Nature & Wildlife</option>
+                        <option value="spiritual">Spiritual</option>
+                        <option value="modern">Modern Cities</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="cities-grid">
+                <!-- City Cards will be dynamically generated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- City Dashboard Section -->
+    <section id="city-dashboard" class="section hidden">
+        <div class="container">
+            <button class="btn back-btn" id="back-to-cities"><i class="fas fa-arrow-left"></i> Back to Cities</button>
+            <div class="city-header">
+                <div class="city-image-container">
+                    <img id="city-image" src="" alt="City">
+                    <div class="city-weather">
+                        <i class="fas fa-sun"></i>
+                        <span id="city-temp">32°C</span>
+                    </div>
+                </div>
+                <div class="city-info">
+                    <h2 id="city-name">City Name</h2>
+                    <p id="city-location">State, India</p>
+                    <div class="city-meta">
+                        <span><i class="fas fa-star"></i> 4.5</span>
+                        <span><i class="fas fa-clock"></i> Best Time: Oct-Mar</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="city-tabs">
+                <button class="tab-btn active" data-tab="overview">Overview</button>
+                <button class="tab-btn" data-tab="attractions">Attractions</button>
+                <button class="tab-btn" data-tab="hotels">Hotels</button>
+                <button class="tab-btn" data-tab="food">Food</button>
+                <button class="tab-btn" data-tab="transport">Transport</button>
+                <button class="tab-btn" data-tab="safety">Safety</button>
+                <button class="tab-btn" data-tab="planner">Trip Planner</button>
+            </div>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="overview">
+                    <h3>About <span id="city-name-overview">City Name</span></h3>
+                    <p id="city-description">City description goes here...</p>
+
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <i class="fas fa-language"></i>
+                            <h4>Languages</h4>
+                            <p id="city-languages">Hindi, English, Local Language</p>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <h4>Currency</h4>
+                            <p>Indian Rupee (INR)</p>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-plug"></i>
+                            <h4>Electricity</h4>
+                            <p>230V, 50Hz, Type D/M</p>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-phone-alt"></i>
+                            <h4>Emergency</h4>
+                            <p>112 (All India Emergency)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="attractions">
+                    <h3>Top Attractions</h3>
+                    <div class="attractions-grid">
+                        <!-- Attraction cards will be dynamically generated -->
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="hotels">
+                    <h3>Recommended Hotels</h3>
+                    <div class="hotels-grid">
+                        <!-- Hotel cards will be dynamically generated -->
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="food">
+                    <h3>Food & Dining</h3>
+                    <div class="food-grid">
+                        <!-- Food cards will be dynamically generated -->
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="transport">
+                    <h3>Transportation Options</h3>
+                    <div class="transport-options">
+                        <!-- Transport options will be dynamically generated -->
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="safety">
+                    <h3>Safety Tips</h3>
+                    <div class="safety-tips">
+                        <!-- Safety tips will be dynamically generated -->
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="planner">
+                    <h3>Trip Planner</h3>
+                    <div class="trip-planner">
+                        <div class="planner-section">
+                            <h4><i class="fas fa-route"></i> Plan Your Route</h4>
+                            <div class="route-planner">
+                                <div class="route-inputs">
+                                    <div class="form-group">
+                                        <label for="route-source">Starting Point</label>
+                                        <input type="text" id="route-source" placeholder="Enter starting point">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="route-destination">Destination</label>
+                                        <input type="text" id="route-destination" placeholder="Enter destination">
+                                    </div>
+                                    <button class="btn primary" id="plan-route-btn">Plan Route</button>
+                                </div>
+                                <div class="route-result hidden">
+                                    <div class="route-details">
+                                        <div class="route-stat">
+                                            <i class="fas fa-road"></i>
+                                            <span id="planned-distance">Distance: 0 km</span>
+                                        </div>
+                                        <div class="route-stat">
+                                            <i class="fas fa-clock"></i>
+                                            <span id="planned-time">Time: 0 mins</span>
+                                        </div>
+                                        <div class="route-stat">
+                                            <i class="fas fa-traffic-light"></i>
+                                            <span id="planned-traffic">Traffic: Moderate</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="planner-section">
+                            <h4><i class="fas fa-bed"></i> Select Accommodation</h4>
+                            <div class="accommodation-selector">
+                                <div class="form-group">
+                                    <label for="hotel-select">Choose Hotel</label>
+                                    <select id="hotel-select">
+                                        <option value="">Select a hotel</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nights">Number of Nights</label>
+                                    <input type="number" id="nights" min="1" value="1">
+                                </div>
+                                <div class="hotel-cost hidden">
+                                    <p>Accommodation Cost: <span id="accommodation-cost">₹0</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="planner-section">
+                            <h4><i class="fas fa-utensils"></i> Food Preferences</h4>
+                            <div class="food-selector">
+                                <div class="form-group">
+                                    <label for="meals-per-day">Meals per Day</label>
+                                    <select id="meals-per-day">
+                                        <option value="1">1 Meal</option>
+                                        <option value="2" selected>2 Meals</option>
+                                        <option value="3">3 Meals</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="food-budget">Budget per Meal (₹)</label>
+                                    <input type="number" id="food-budget" min="100" value="300">
+                                </div>
+                                <div class="food-cost hidden">
+                                    <p>Estimated Food Cost: <span id="food-cost">₹0</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="planner-section">
+                            <h4><i class="fas fa-calculator"></i> Trip Summary</h4>
+                            <div class="trip-summary">
+                                <div class="summary-item">
+                                    <span>Transportation:</span>
+                                    <span id="summary-transport">₹0</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Accommodation:</span>
+                                    <span id="summary-accommodation">₹0</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Food:</span>
+                                    <span id="summary-food">₹0</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Attractions:</span>
+                                    <span id="summary-attractions">₹0</span>
+                                </div>
+                                <div class="summary-item total">
+                                    <span>Total Estimated Cost:</span>
+                                    <span id="summary-total">₹0</span>
+                                </div>
+                            </div>
+                            <button class="btn primary full-width" id="book-trip-btn">Book This Trip</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section id="map" class="section">
+        <div class="container">
+            <h2 class="section-title">Interactive Map</h2>
+            <div class="map-container">
+                <div id="map-container">
+                    <img id="map-image" src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Map">
+                    <canvas id="route-canvas"></canvas>
+                </div>
+                <div class="map-overlay">
+                    <h3>Real-time Traffic & Navigation</h3>
+                    <p>Get real-time traffic updates and optimal routes to your destination</p>
+                    <div class="map-controls">
+                        <input type="text" placeholder="Starting point..." id="route-start">
+                        <input type="text" placeholder="Destination..." id="route-end">
+                        <button class="btn primary" id="get-route-btn">Get Route</button>
+                    </div>
+                    <div class="route-info hidden">
+                        <div class="route-details">
+                            <div class="route-stat">
+                                <i class="fas fa-road"></i>
+                                <span id="route-distance">Distance: 0 km</span>
+                            </div>
+                            <div class="route-stat">
+                                <i class="fas fa-clock"></i>
+                                <span id="route-time">Time: 0 mins</span>
+                            </div>
+                            <div class="route-stat">
+                                <i class="fas fa-traffic-light"></i>
+                                <span id="route-traffic">Traffic: Moderate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Attractions Section -->
+    <section id="attractions" class="section">
+        <div class="container">
+            <h2 class="section-title">Popular Attractions</h2>
+            <div class="attractions-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="historical">Historical</button>
+                <button class="filter-btn" data-filter="religious">Religious</button>
+                <button class="filter-btn" data-filter="natural">Natural</button>
+                <button class="filter-btn" data-filter="modern">Modern</button>
+            </div>
+
+            <div class="attractions-grid">
+                <!-- Attraction cards will be dynamically generated -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Travelers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"SmartTrip made my India trip incredible! The real-time traffic updates saved me so much time in Delhi and Mumbai."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah">
+                        <div>
+                            <h4>Sarah Johnson</h4>
+                            <p>USA</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The local insights and safety tips were invaluable. I felt confident exploring even the less touristy areas."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael">
+                        <div>
+                            <h4>Michael Chen</h4>
+                            <p>Canada</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The trip planner feature helped me budget perfectly. I knew exactly how much my Mumbai trip would cost!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma">
+                        <div>
+                            <h4>Emma Wilson</h4>
+                            <p>UK</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <i class="fas fa-route"></i>
+                    <h3>SmartTrip</h3>
+                </div>
+                <p>Your intelligent travel companion for exploring India</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Cities</a></li>
+                    <li><a href="#">Attractions</a></li>
+                    <li><a href="#">Map</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Download Our App</h3>
+                <p>Get the SmartTrip app for the best experience</p>
+                <div class="app-buttons">
+                    <a href="#" class="app-button">
+                        <i class="fab fa-apple"></i>
+                        <div>
+                            <span>Download on the</span>
+                            <span>App Store</span>
+                        </div>
+                    </a>
+                    <a href="#" class="app-button">
+                        <i class="fab fa-google-play"></i>
+                        <div>
+                            <span>Get it on</span>
+                            <span>Google Play</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 SmartTrip. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Authentication Modal -->
+<div class="modal" id="auth-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="auth-container">
+            <div class="auth-logo">
+                <i class="fas fa-route"></i>
+                <h2>SmartTrip</h2>
+            </div>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-auth="login">Login</button>
+                <button class="auth-tab" data-auth="signup">Sign Up</button>
+            </div>
+
+            <form id="login-form" class="auth-form active">
+                <h3>Welcome Back</h3>
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <div class="form-options">
+                    <label class="checkbox">
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn primary full-width">Login</button>
+
+                <div class="divider">
+                    <span>Or continue with</span>
+                </div>
+
+                <div id="g_id_onload"
+                     data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+                     data-callback="handleCredentialResponse">
+                </div>
+                <div class="g_id_signin" data-type="standard"></div>
+            </form>
+
+            <form id="signup-form" class="auth-form">
+                <h3>Create Account</h3>
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm">Confirm Password</label>
+                    <input type="password" id="signup-confirm" required>
+                </div>
+                <div class="form-options">
+                    <label class="checkbox">
+                        <input type="checkbox" required> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                    </label>
+                </div>
+                <button type="submit" class="btn primary full-width">Sign Up</button>
+
+                <div class="divider">
+                    <span>Or sign up with</span>
+                </div>
+
+                <div id="g_id_onload"
+                     data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+                     data-callback="handleCredentialResponse">
+                </div>
+                <div class="g_id_signin" data-type="standard"></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Notification -->
+<div id="notification" class="notification hidden"></div>
+
+<!-- Trip Booking Confirmation Modal -->
+<div class="modal" id="booking-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="booking-container">
+            <div class="booking-header">
+                <i class="fas fa-check-circle"></i>
+                <h2>Trip Booked Successfully!</h2>
+            </div>
+            <div class="booking-details">
+                <p>Your trip to <span id="booking-city">Mumbai</span> has been booked successfully.</p>
+                <div class="booking-summary">
+                    <div class="booking-item">
+                        <span>Transportation:</span>
+                        <span id="booking-transport">₹0</span>
+                    </div>
+                    <div class="booking-item">
+                        <span>Accommodation:</span>
+                        <span id="booking-accommodation">₹0</span>
+                    </div>
+                    <div class="booking-item">
+                        <span>Food:</span>
+                        <span id="booking-food">₹0</span>
+                    </div>
+                    <div class="booking-item">
+                        <span>Attractions:</span>
+                        <span id="booking-attractions">₹0</span>
+                    </div>
+                    <div class="booking-item total">
+                        <span>Total Paid:</span>
+                        <span id="booking-total">₹0</span>
+                    </div>
+                </div>
+                <p>A confirmation email has been sent to your registered email address.</p>
+                <div class="booking-actions">
+                    <button class="btn primary" id="view-booking-btn">View Booking Details</button>
+                    <button class="btn secondary" id="close-booking-btn">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="js/utils.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/city.js"></script>
+<script src="js/trip-planner.js"></script>
+<script src="js/map.js"></script>
+</body>
+</html>
